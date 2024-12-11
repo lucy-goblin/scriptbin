@@ -1,5 +1,5 @@
 body {
-	background: #002B36;
+	background: #101622;
 	padding: 20px 50px;
 	margin: 0px;
 }
@@ -65,30 +65,34 @@ textarea {
 #box1 {
 	padding: 5px;
 	text-align: center;
-	background: #00222b;
+	background: #17213c;
 }
 
 #box2 {
-	background: #08323c;
+	background: #22305e;
 	font-size: 0px;
 	padding: 0px 5px;
+	display: flex;
+	justify-content: center;
 }
 
 #box1 a.logo, #box1 a.logo:visited {
 	display: inline-block;
-	background: url(logo.png);
-	width: 126px;
-	height: 42px;
+	background: url(logo.png) no-repeat center center; /* Center the logo */
+	background-size: contain; /* Make sure it fits within the box */
+	width: 150px;
+	height: 48px;
 }
 
+
 #box1 a.logo:hover {
-	background-position: 0 bottom;
+	filter: brightness(0) invert(1);
 }
 
 #box2 .function {
 	background: url(function-icons.png);
-	width: 32px;
-	height: 37px;
+	width: 38px;
+	height: 38px;
 	display: inline-block;
 	position: relative;
 }
@@ -115,7 +119,7 @@ textarea {
 }
 
 #box3, #messages li {
-	background: #173e48;
+	background: #2b3c75;
 	font-family: Helvetica, sans-serif;
 	font-size: 12px;
 	line-height: 14px;
@@ -129,30 +133,17 @@ textarea {
 }
 
 #box3 .shortcut {
-	color: #c4dce3;
+	color: #c4c8e3;
 	font-weight: normal;
 }
 
-#box2 .function.save { background-position: -5px top; }
-#box2 .function.enabled.save { background-position: -5px center; }
-#box2 .function.enabled.save:hover { background-position: -5px bottom; }
+#box2 .function.save { background-position: -3px top; }
+#box2 .function.enabled.save { background-position: -3px center; }
+#box2 .function.enabled.save:hover { background-position: -3px bottom; }
 
-#box2 .function.new { background-position: -42px top; }
-#box2 .function.enabled.new { background-position: -42px center; }
-#box2 .function.enabled.new:hover { background-position: -42px bottom; }
-
-#box2 .function.duplicate { background-position: -79px top; }
-#box2 .function.enabled.duplicate { background-position: -79px center; }
-#box2 .function.enabled.duplicate:hover { background-position: -79px bottom; }
-
-#box2 .function.raw { background-position: -116px top; }
-#box2 .function.enabled.raw { background-position: -116px center; }
-#box2 .function.enabled.raw:hover { background-position: -116px bottom; }
-
-#box2 .function.twitter { background-position: -153px top; }
-#box2 .function.enabled.twitter { background-position: -153px center; }
-#box2 .function.enabled.twitter:hover { background-position: -153px bottom; }
-#box2 .button-picture{ border-width: 0; font-size: inherit; }
+#box2 .function.new { background-position: -40px top; }
+#box2 .function.enabled.new { background-position: -40px center; }
+#box2 .function.enabled.new:hover { background-position: -40px bottom; }
 
 #messages {
 	position:fixed;
@@ -164,7 +155,7 @@ textarea {
 }
 
 #messages li {
-	background:rgba(23,62,72,0.8);
+	background: rgba(23, 33, 72, 0.8);
 	margin:0 auto;
 	list-style:none;
 }

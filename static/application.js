@@ -99,10 +99,6 @@ var haste = function(appName, options) {
   this.options = options;
   this.configureShortcuts();
   this.configureButtons();
-  // If twitter is disabled, hide the button
-  if (!options.twitter) {
-    $('#box2 .twitter').hide();
-  };
   this.baseUrl = options.baseUrl || '/';
 };
 
@@ -124,11 +120,6 @@ haste.prototype.showMessage = function(msg, cls) {
 // Show the light key
 haste.prototype.lightKey = function() {
   this.configureKey(['new', 'save']);
-};
-
-// Show the full key
-haste.prototype.fullKey = function() {
-  this.configureKey(['new', 'duplicate', 'twitter', 'raw']);
 };
 
 // Set the key up for certain things to be enabled
@@ -172,7 +163,7 @@ haste.extensionMap = {
   lua: 'lua', pas: 'delphi', java: 'java', cpp: 'cpp', cc: 'cpp', m: 'objectivec',
   vala: 'vala', sql: 'sql', sm: 'smalltalk', lisp: 'lisp', ini: 'ini',
   diff: 'diff', bash: 'bash', sh: 'bash', tex: 'tex', erl: 'erlang', hs: 'haskell',
-  md: 'markdown', txt: '', coffee: 'coffee', swift: 'swift'
+  md: 'markdown', txt: '', coffee: 'coffee', swift: 'swift', cs: 'csharp'
 };
 
 // Look up the extension preferred for a type
@@ -216,7 +207,7 @@ haste.prototype.loadDocument = function(key) {
     if (ret) {
       _this.$code.html(ret.value);
       _this.setTitle(ret.key);
-      _this.fullKey();
+      _this.lightKey();
       _this.$textarea.val('').hide();
       _this.$box.show().focus();
       _this.addLineNumbers(ret.lineCount);
@@ -225,15 +216,6 @@ haste.prototype.loadDocument = function(key) {
       _this.newDocument();
     }
   }, this.lookupTypeByExtension(parts[1]));
-};
-
-// Duplicate the current document - only if locked
-haste.prototype.duplicateDocument = function() {
-  if (this.doc.locked) {
-    var currentData = this.doc.data;
-    this.newDocument();
-    this.$textarea.val(currentData);
-  }
 };
 
 // Lock the current document
@@ -251,7 +233,7 @@ haste.prototype.lockDocument = function() {
         file += '.' + _this.lookupExtensionByType(ret.language);
       }
       window.history.pushState(null, _this.appName + '-' + ret.key, file);
-      _this.fullKey();
+      _this.lightKey();
       _this.$textarea.val('').hide();
       _this.$box.show().focus();
       _this.addLineNumbers(ret.lineCount);
@@ -284,39 +266,6 @@ haste.prototype.configureButtons = function() {
       shortcutDescription: 'control + n',
       action: function() {
         _this.newDocument(!_this.doc.key);
-      }
-    },
-    {
-      $where: $('#box2 .duplicate'),
-      label: 'Duplicate & Edit',
-      shortcut: function(evt) {
-        return _this.doc.locked && evt.ctrlKey && evt.keyCode === 68;
-      },
-      shortcutDescription: 'control + d',
-      action: function() {
-        _this.duplicateDocument();
-      }
-    },
-    {
-      $where: $('#box2 .raw'),
-      label: 'Just Text',
-      shortcut: function(evt) {
-        return evt.ctrlKey && evt.shiftKey && evt.keyCode === 82;
-      },
-      shortcutDescription: 'control + shift + r',
-      action: function() {
-        window.location.href = _this.baseUrl + 'raw/' + _this.doc.key;
-      }
-    },
-    {
-      $where: $('#box2 .twitter'),
-      label: 'Twitter',
-      shortcut: function(evt) {
-        return _this.options.twitter && _this.doc.locked && evt.shiftKey && evt.ctrlKey && evt.keyCode == 84;
-      },
-      shortcutDescription: 'control + shift + t',
-      action: function() {
-        window.open('https://twitter.com/share?url=' + encodeURI(window.location.href));
       }
     }
   ];
