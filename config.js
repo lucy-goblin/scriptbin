@@ -13,7 +13,7 @@
 
   "logging": [
     {
-      "level": "verbose",
+      "level": "error",
       "type": "Console",
       "colorize": true
     }
