@@ -15,7 +15,7 @@ To make a new entry, click "New" (or type 'control + n')
 
 ## Duration
 
-Pastes will stay for 30 days from their last view.</br>
+Pastes will stay for 24 hours from their creation.</br>
 They may be removed earlier and without notice.
 
 ## Privacy
