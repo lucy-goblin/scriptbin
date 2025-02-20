@@ -37,7 +37,6 @@
   },
 
   "documents": {
-    "about": "./about.md"
   }
 
 }
